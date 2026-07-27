@@ -12,8 +12,6 @@ RUN python3 -m venv .venv
 
 RUN git clone https://github.com/Gen-Verse/OpenClaw-RL
 
-SHELL ["/bin/bash", "-c"]
-
 RUN /my_workspace/.venv/bin/pip install \
   torch==2.9.1+cu129 \
   torchvision==0.24.1+cu129 \
