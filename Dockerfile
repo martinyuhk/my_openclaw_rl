@@ -24,11 +24,13 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-ins
     wget \
  && rm -rf /var/lib/apt/lists/*
 
-
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb && dpkg -i cuda-keyring_1.1-1_all.deb
+#RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb && dpkg -i cuda-keyring_1.1-1_all.deb
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
-    python3-dev libibverbs-dev librdmacm-dev ninja-build libnccl2 libnccl-dev \
+#    python3-dev libibverbs-dev librdmacm-dev ninja-build libnccl2 libnccl-dev \
+ python3-dev libibverbs-dev librdmacm-dev ninja-build \
  && rm -rf /var/lib/apt/lists/*
+
+RUN /my_workspace/.venv/bin/pip install nvidia-nccl-cu12
 
 RUN cd OpenClaw-RL && git clone https://github.com/deepseek-ai/DeepEP.git && cd DeepEP && /my_workspace/.venv/bin/pip install -e . --no-build-isolation
 
