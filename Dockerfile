@@ -22,4 +22,8 @@ RUN source /my_workspace/.venv/bin/activate && pip install \
 
 RUN source /my_workspace/.venv/bin/activate && pip install -r OpenClaw-RL/requirements.txt
 
-RUN touch /tmp/20260727_1801
+RUN cd OpenClaw-RL && source /my_workspace/.venv/bin/activate && git clone https://github.com/deepseek-ai/DeepEP.git && cd DeepEP && pip install -e . --no-build-isolation
+
+RUN cd OpenClaw-RL && source /my_workspace/.venv/bin/activate && pip install -e slime/slime/backends/megatron_utils/kernels/int4_qat --no-build-isolation
+
+RUN touch /tmp/20260727_2033
