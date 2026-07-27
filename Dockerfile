@@ -20,6 +20,11 @@ RUN /my_workspace/.venv/bin/pip install \
 
 RUN cd OpenClaw-RL && /my_workspace/.venv/bin/pip install -r requirements.txt
 
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
+    wget \
+ && rm -rf /var/lib/apt/lists/*
+
+
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2404/x86_64/cuda-keyring_1.1-1_all.deb && dpkg -i cuda-keyring_1.1-1_all.deb
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
     python3-dev libibverbs-dev librdmacm-dev ninja-build libnccl2 libnccl-dev \
