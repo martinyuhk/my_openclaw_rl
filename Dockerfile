@@ -18,7 +18,7 @@ RUN /my_workspace/.venv/bin/pip install \
   torchaudio==2.9.1+cu129 \
   --index-url https://download.pytorch.org/whl/cu129
 
-RUN /my_workspace/.venv/bin/pip install -r OpenClaw-RL/requirements.txt
+RUN cd OpenClaw-RL && /my_workspace/.venv/bin/pip install -r /requirements.txt
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
     python3-dev libibverbs-dev librdmacm-dev libverbs-providers \
