@@ -23,7 +23,7 @@ RUN source /my_workspace/.venv/bin/activate && pip install \
 RUN source /my_workspace/.venv/bin/activate && pip install -r OpenClaw-RL/requirements.txt
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
-    python3-dev libibverbs-dev librdmacm-dev libmlx5-dev \
+    python3-dev libibverbs-dev librdmacm-dev libverbs-providers \
  && rm -rf /var/lib/apt/lists/*
 
 RUN cd OpenClaw-RL && source /my_workspace/.venv/bin/activate && git clone https://github.com/deepseek-ai/DeepEP.git && cd DeepEP && pip install -e . --no-build-isolation
