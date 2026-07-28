@@ -36,6 +36,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-ins
 
 #RUN /my_workspace/.venv/bin/pip install nvidia-nccl-cu12==2.30.4
 
+ENV TORCH_CUDA_ARCH_LIST="8.0"
+
 RUN cd OpenClaw-RL && git clone -b v1.2.1 https://github.com/deepseek-ai/DeepEP.git && cd DeepEP && /my_workspace/.venv/bin/pip install . --no-build-isolation
 
 RUN cd OpenClaw-RL && /my_workspace/.venv/bin/pip install slime/slime/backends/megatron_utils/kernels/int4_qat --no-build-isolation
