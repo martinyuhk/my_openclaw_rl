@@ -28,6 +28,8 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-ins
  python3-dev libibverbs-dev librdmacm-dev ninja-build \
  && rm -rf /var/lib/apt/lists/*
 
+SHELL ["/bin/bash", "-exo", "pipefail", "-c"]
+
 #RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
 #    --allow-change-held-packages libnccl-dev=2.30.4-1+cuda12.9 libnccl2=2.30.4-1+cuda12.9 \
 # && rm -rf /var/lib/apt/lists/*
@@ -38,4 +40,4 @@ RUN cd OpenClaw-RL && git clone -b v1.2.1 https://github.com/deepseek-ai/DeepEP.
 
 RUN cd OpenClaw-RL && source /my_workspace/.venv/bin/activate && pip install -e slime/slime/backends/megatron_utils/kernels/int4_qat --no-build-isolation
 
-RUN touch /tmp/20260727_2130
+RUN touch /tmp/20260728_1151
