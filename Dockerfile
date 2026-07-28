@@ -30,12 +30,14 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-ins
  python3-dev libibverbs-dev librdmacm-dev ninja-build \
  && rm -rf /var/lib/apt/lists/*
 
-RUN /my_workspace/.venv/bin/pip install nvidia-nccl-cu12
+#RUN /my_workspace/.venv/bin/pip install nvidia-nccl-cu12
 
-RUN cd OpenClaw-RL && git clone https://github.com/deepseek-ai/DeepEP.git 
+RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
+    --allow-change-held-packages libnccl2 libnccl-dev \
+ && rm -rf /var/lib/apt/lists/*
 
-#&& cd DeepEP && /my_workspace/.venv/bin/pip install -e . --no-build-isolation
+RUN cd OpenClaw-RL && git clone https://github.com/deepseek-ai/DeepEP.git && cd DeepEP && /my_workspace/.venv/bin/pip install -e . --no-build-isolation
 
-#RUN cd OpenClaw-RL && /my_workspace/.venv/bin/pip install -e slime/slime/backends/megatron_utils/kernels/int4_qat --no-build-isolation
+RUN cd OpenClaw-RL && /my_workspace/.venv/bin/pip install -e slime/slime/backends/megatron_utils/kernels/int4_qat --no-build-isolation
 
 RUN touch /tmp/20260727_2130
