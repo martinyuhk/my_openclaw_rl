@@ -2,8 +2,6 @@ FROM nvidia/cuda:12.9.2-cudnn-devel-ubuntu24.04
 
 WORKDIR /my_workspace
 
-RUN cat /etc/resolv.conf > /tmp/test.txt
-
 RUN DEBIAN_FRONTEND=noninteractive apt-get update && apt-get install -y --no-install-recommends \
     python3 python3-venv git \
  && rm -rf /var/lib/apt/lists/*
@@ -38,6 +36,6 @@ RUN /my_workspace/.venv/bin/pip install nvidia-nccl-cu12==2.30.4
 
 RUN cd OpenClaw-RL && git clone https://github.com/deepseek-ai/DeepEP.git && cd DeepEP && /my_workspace/.venv/bin/pip install -e . --no-build-isolation
 
-RUN cd OpenClaw-RL && /my_workspace/.venv/bin/pip install -e slime/slime/backends/megatron_utils/kernels/int4_qat --no-build-isolation
+#RUN cd OpenClaw-RL && /my_workspace/.venv/bin/pip install -e slime/slime/backends/megatron_utils/kernels/int4_qat --no-build-isolation
 
 RUN touch /tmp/20260727_2130
